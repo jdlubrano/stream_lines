@@ -1,5 +1,15 @@
-require "bundler/setup"
-require "stream_lines"
+require 'bundler/setup'
+require 'byebug'
+require 'stream_lines'
+
+require 'awesome_print'
+require 'get_process_mem'
+require 'memory_profiler'
+require 'webmock/rspec'
+
+Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |f| require f }
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
