@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'rack'
 require 'stream_lines/stream'
 
 RSpec.describe StreamLines::Stream do
@@ -105,11 +106,14 @@ RSpec.describe StreamLines::Stream do
     # Figure out how to deactivate WebMock and start the StreamingApi
     # in a separate process.  That way we should get a cleaner look at
     # this gem's memory usage.
-    xcontext 'memory efficiency' do
+    context 'memory efficiency' do
+      include StreamingApi::Helpers
 
-      let(:url) { 'http://localhost/stream_big_data' }
+      let(:url) { streaming_api_url }
 
-      before { stub_request(:get, url).to_rack(StreamingApi) }
+      around do |ex|
+        run_streaming_api { ex.run }
+      end
 
       it 'can stream large files without using too much memory' do
         max_memory_usage = baseline_memory_usage = GetProcessMem.new.mb
@@ -118,7 +122,7 @@ RSpec.describe StreamLines::Stream do
           max_memory_usage = [max_memory_usage, GetProcessMem.new.mb].max
         end
 
-        expect(max_memory_usage - baseline_memory_usage).to be <= 10
+        expect(max_memory_usage - baseline_memory_usage).to be <= 20
       end
     end
   end
