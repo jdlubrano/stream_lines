@@ -25,7 +25,7 @@ module StreamingApi
       end
     end
 
-    def streaming_api_url
+    def stream_data_url
       'http://localhost:4567/stream_data'
     end
   end

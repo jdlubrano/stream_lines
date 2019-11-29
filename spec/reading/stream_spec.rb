@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'rack'
-require 'stream_lines/stream'
+require 'stream_lines/reading/stream'
 
-RSpec.describe StreamLines::Stream do
+RSpec.describe StreamLines::Reading::Stream do
 
   let(:url) { 'https://test.stream_lines.com' }
   let(:stream) { described_class.new(url) }
@@ -109,7 +109,7 @@ RSpec.describe StreamLines::Stream do
     context 'memory efficiency' do
       include StreamingApi::Helpers
 
-      let(:url) { streaming_api_url }
+      let(:url) { stream_data_url }
 
       around do |ex|
         run_streaming_api { ex.run }
