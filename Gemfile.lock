@@ -11,6 +11,10 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
     backports (3.15.0)
+    bundler-audit (0.6.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 0.18)
+    bundler-gem_version_tasks (0.2.1)
     byebug (11.0.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -33,7 +37,7 @@ GEM
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
-    rake (10.5.0)
+    rake (11.3.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -60,6 +64,7 @@ GEM
       rack-protection (= 2.0.7)
       sinatra (= 2.0.7)
       tilt (~> 2.0)
+    thor (0.20.3)
     tilt (2.0.10)
     webmock (3.7.0)
       addressable (>= 2.3.6)
@@ -72,10 +77,12 @@ PLATFORMS
 DEPENDENCIES
   awesome_print (~> 1.8)
   bundler (~> 2.0)
+  bundler-audit
+  bundler-gem_version_tasks
   byebug
-  get_process_mem (~> 0.2)
-  memory_profiler (~> 0.9)
-  rake (~> 10.0)
+  get_process_mem
+  memory_profiler
+  rake (~> 11.0)
   rspec (~> 3.0)
   sinatra (~> 2.0)
   sinatra-contrib (~> 2.0)
