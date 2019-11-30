@@ -93,10 +93,6 @@ RSpec.describe StreamLines::Reading::Stream do
       end
     end
 
-    # TODO: (jdlubrano)
-    # Figure out how to deactivate WebMock and start the StreamingApi
-    # in a separate process.  That way we should get a cleaner look at
-    # this gem's memory usage.
     context 'memory efficiency' do
       include StreamingApi::Helpers
 
