@@ -10,7 +10,7 @@ module StreamLines
       include Enumerable
       include HTTParty
 
-      raise_on (400..599)
+      raise_on 400..599
 
       def initialize(url)
         @url = url
@@ -38,7 +38,7 @@ module StreamLines
       end
 
       def extract_lines(chunk)
-        lines = chunk.split($/, -1)
+        lines = chunk.split($INPUT_RECORD_SEPARATOR, -1)
 
         if lines.length > 1
           @buffer.rewind

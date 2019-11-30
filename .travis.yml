@@ -7,4 +7,5 @@ rvm:
 before_install: gem install bundler -v 2.0.2
 script:
   - bundle exec bundle-audit check --update
+  - bundle exec rubocop
   - bundle exec rspec
