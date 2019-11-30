@@ -1,6 +1,6 @@
 ---
 language: ruby
-# cache: bundler
+cache: bundler
 rvm:
   - 2.6.0
   - 2.5.0
@@ -9,3 +9,6 @@ script:
   - bundle exec bundle-audit check --update
   - bundle exec rubocop
   - bundle exec rspec
+branches:
+  only:
+    - master
