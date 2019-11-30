@@ -1,6 +1,6 @@
 ---
 language: ruby
-cache: bundler
+# cache: bundler
 rvm:
   - 2.6.0
   - 2.5.0
