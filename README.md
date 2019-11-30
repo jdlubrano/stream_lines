@@ -1,5 +1,7 @@
 # StreamLines
 
+[![Build Status](https://travis-ci.com/jdlubrano/stream_lines.svg?branch=master)](https://travis-ci.com/jdlubrano/stream_lines)
+
 An API for streaming files from remote locations one line at a time.
 
 ## Background
