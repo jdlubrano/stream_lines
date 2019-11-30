@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - '*.gemspec'
+    - 'vendor/bundle/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 99
+
+Style/Documentation:
+  Enabled: false

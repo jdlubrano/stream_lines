@@ -16,12 +16,12 @@ module StreamingApi
 
     def start_server
       options = {
-        :Host => '127.0.0.1',
-        :Port => '4567'
+        Host: '127.0.0.1',
+        Port: '4567'
       }
 
       Rack::Handler::WEBrick.run(StreamingApi::App, options) do |server|
-        [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
+        %i[INT TERM].each { |sig| trap(sig) { server.stop } }
       end
     end
 
