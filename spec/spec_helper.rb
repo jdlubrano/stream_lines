@@ -1,5 +1,8 @@
 require 'bundler/setup'
 require 'byebug'
+require 'simplecov'
+SimpleCov.start
+
 require 'stream_lines'
 
 require 'awesome_print'
