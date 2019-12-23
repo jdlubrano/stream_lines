@@ -12,7 +12,7 @@ require 'get_process_mem'
 require 'memory_profiler'
 require 'webmock/rspec'
 
-Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |f| require f }
+Dir[File.join(__dir__, 'support', '**', '*.rb')].sort.each { |f| require f }
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
