@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'stream_lines/error'
 require 'stream_lines/reading/stream'
 
 module StreamLines

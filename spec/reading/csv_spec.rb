@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'stream_lines/reading/csv'
+require 'stream_lines'
 
 RSpec.describe StreamLines::Reading::CSV do
   let(:url) { 'https://test.stream_lines.com' }
