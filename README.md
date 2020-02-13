@@ -101,6 +101,8 @@ After merging in the new functionality to the master branch:
 git checkout master
 git pull --prune
 bundle exec rake version:bump:<major, minor, or patch>
+bundle exec rubocop -a
+git commit -a --amend
 bundle exec rake release
 ```
 
