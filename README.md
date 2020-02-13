@@ -52,6 +52,39 @@ stream.each_slice(100) do |lines|
 end
 ```
 
+##### CSVs
+
+This gem provides first-class support for streaming CSVs from a remote URL.
+
+```ruby
+url = 'https://my.remote.file/file.csv'
+stream = StreamLines::Reading::CSV.new(url)
+
+stream.each do |row|
+  # each row will be an array
+end
+
+# Supports most Ruby CSV options (see ignored options below)
+stream = StreamLines::Reading::CSV.new(url, headers: true)
+
+stream.each do |row|
+  # each row is a CSV::Row object that you can access like row['column_name']
+end
+```
+
+Most options that you can pass to
+[Ruby's CSV library](https://ruby-doc.org/stdlib-2.6.1/libdoc/csv/rdoc/CSV.html#method-c-new)
+are supported; however, the following options are explicitly ignored:
+
+* `return_headers`
+* `header_converters`
+* `skip_lines`
+
+I suspect that these options are not used terribly frequently, and each would
+require additional logic in the `StreamLines::Reading::CSV#each` method.
+Rather than attempting to implement sensible solutions for these options, I am
+choosing to explicitly ignore them until there is enough outcry to support them.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies.
