@@ -6,13 +6,15 @@ An API for streaming files from remote locations one line at a time.
 
 ## Background
 
-Some applications run in production environments without writable file system;
+Some applications run in production environments without a writable file system;
 usually this is a security measure.  Futhermore, with the proliferation of
 container-based production environments, containers may not have access to
 tremendous amounts of memory.  Thus, it can be impossible to read large files
 unless you read the file into memory in small doses.  A common pattern is to
 use a line-delimited file like [JSON Lines](http://jsonlines.org) or a CSV
 and to read the file one line at a time in order to iterate over a dataset.
+This gem aims to provide an [Enumerable](https://ruby-doc.org/core-2.7.0/Enumerable.html)
+interface for iterating over remote, line-delimited datasets.
 
 ## Installation
 
@@ -41,7 +43,7 @@ url = 'https://my.remote.file/file.txt'
 stream = StreamLines::Reading::Stream.new(url)
 
 stream.each do |line|
-  # Do something with the line of data
+  # Do something with the line of data (the line will be a String)
 end
 
 # A StreamLines::Reading::Stream object is Enumerable, so you can also use
@@ -61,14 +63,14 @@ url = 'https://my.remote.file/file.csv'
 stream = StreamLines::Reading::CSV.new(url)
 
 stream.each do |row|
-  # each row will be an array
+  # each row will be an Array
 end
 
 # Supports most Ruby CSV options (see ignored options below)
 stream = StreamLines::Reading::CSV.new(url, headers: true)
 
 stream.each do |row|
-  # each row is a CSV::Row object that you can access like row['column_name']
+  # each row will be a CSV::Row object that you can access like row['column_name']
 end
 ```
 
@@ -84,6 +86,27 @@ I suspect that these options are not used terribly frequently, and each would
 require additional logic in the `StreamLines::Reading::CSV#each` method.
 Rather than attempting to implement sensible solutions for these options, I am
 choosing to explicitly ignore them until there is enough outcry to support them.
+
+##### JSON Lines/Streaming JSON
+
+This gem provides first-class support for streaming
+[JSON lines](http://jsonlines.org) from a remote URL.
+
+```ruby
+url = 'https://my.remote.file/file.jsonl'
+stream = StreamLines::Reading::JSONLines.new(url)
+
+stream.each do |row|
+  # each row will be an Hash
+end
+
+# Supports all Ruby JSON::parse options
+stream = StreamLines::Reading::JSONLines.new(url, symbolize_names: true)
+
+stream.each do |row|
+  # each row will be a Hash
+end
+```
 
 ## Development
 
