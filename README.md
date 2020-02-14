@@ -1,5 +1,6 @@
 # StreamLines
 
+[![Gem Version](https://badge.fury.io/rb/stream_lines.svg)](https://badge.fury.io/rb/stream_lines)
 [![Build Status](https://travis-ci.com/jdlubrano/stream_lines.svg?branch=master)](https://travis-ci.com/jdlubrano/stream_lines)
 
 An API for streaming files from remote locations one line at a time.
