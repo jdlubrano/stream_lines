@@ -43,7 +43,7 @@ module StreamLines
         if lines.length > 1
           @buffer.rewind
           lines.first.prepend(@buffer.read)
-          @buffer.truncate(0)
+          @buffer = StringIO.new
         end
 
         @buffer << lines.pop
