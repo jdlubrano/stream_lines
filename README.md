@@ -1,7 +1,7 @@
 # StreamLines
 
 [![Gem Version](https://badge.fury.io/rb/stream_lines.svg)](https://badge.fury.io/rb/stream_lines)
-[![Build Status](https://travis-ci.com/jdlubrano/stream_lines.svg?branch=master)](https://travis-ci.com/jdlubrano/stream_lines)
+[![Build Status](https://travis-ci.com/jdlubrano/stream_lines.svg?branch=main)](https://travis-ci.com/jdlubrano/stream_lines)
 
 An API for streaming files from remote locations one line at a time.
 
@@ -119,10 +119,10 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Releasing
 
-After merging in the new functionality to the master branch:
+After merging in the new functionality to the main branch:
 
 ```
-git checkout master
+git checkout main
 git pull --prune
 bundle exec rake version:bump:<major, minor, or patch>
 bundle exec rubocop -a
@@ -135,7 +135,7 @@ bundle exec rake release
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/jdlubrano/stream_lines. This project is intended to be a
 safe, welcoming space for collaboration, and contributors are expected to
-adhere to the [code of conduct](https://github.com/jdlubrano/stream_lines/blob/master/CODE_OF_CONDUCT.md).
+adhere to the [code of conduct](https://github.com/jdlubrano/stream_lines/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
