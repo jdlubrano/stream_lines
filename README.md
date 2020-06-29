@@ -1,7 +1,7 @@
 # StreamLines
 
 [![Gem Version](https://badge.fury.io/rb/stream_lines.svg)](https://badge.fury.io/rb/stream_lines)
-![](https://github.com/actions/stream_lines/workflows/Tests/badge.svg)
+![](https://github.com/jdlubrano/stream_lines/workflows/Tests/badge.svg)
 
 An API for streaming files from remote locations one line at a time.
 
