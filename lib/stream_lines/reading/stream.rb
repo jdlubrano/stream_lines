@@ -12,9 +12,10 @@ module StreamLines
 
       raise_on 400..599
 
-      def initialize(url)
+      def initialize(url, encoding: 'UTF-8')
         @url = url
-        @buffer = StringIO.new
+        @encoding = encoding
+        @buffer = String.new(encoding: @encoding)
       end
 
       def each(&block)
@@ -33,20 +34,20 @@ module StreamLines
           lines.each { |line| block.call(line) }
         end
 
-        @buffer.rewind
-        block.call(@buffer.read) if @buffer.size.positive?
+        @buffer
+        block.call(@buffer) if @buffer.size.positive?
       end
 
       def extract_lines(chunk)
-        lines = chunk.split($INPUT_RECORD_SEPARATOR, -1)
+        encoded_chunk = chunk.to_s.dup.force_encoding(@encoding)
+        lines = encoded_chunk.split($INPUT_RECORD_SEPARATOR, -1)
 
         if lines.length > 1
-          @buffer.rewind
-          lines.first.prepend(@buffer.read)
-          @buffer = StringIO.new
+          lines.first.prepend(@buffer)
+          @buffer = String.new(encoding: @encoding)
         end
 
-        @buffer << lines.pop
+        @buffer << lines.pop.to_s
         lines
       end
     end
