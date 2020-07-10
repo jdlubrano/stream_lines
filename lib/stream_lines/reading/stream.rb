@@ -34,7 +34,6 @@ module StreamLines
           lines.each { |line| block.call(line) }
         end
 
-        @buffer
         block.call(@buffer) if @buffer.size.positive?
       end
 
