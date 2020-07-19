@@ -85,7 +85,7 @@ RSpec.describe StreamLines::Reading::Stream do
     context 'when the chunk splits a UTF-8 string such that an invalid byte sequence is created' do
       context 'no newlines' do
         before do
-          content = "Hello™ World"
+          content = 'Hello™ World'
           bytes = content.bytes
 
           allow(described_class)
@@ -95,7 +95,7 @@ RSpec.describe StreamLines::Reading::Stream do
         end
 
         it 'reassembles valid byte sequences' do
-          expect(streamed_lines).to eq(["Hello™ World"])
+          expect(streamed_lines).to eq(['Hello™ World'])
         end
       end
 
@@ -116,9 +116,9 @@ RSpec.describe StreamLines::Reading::Stream do
         end
 
         it 'reassembles valid byte sequences' do
-          expect(streamed_lines).to eq(["Hello™, World",
-                                        "Hello™ again, World",
-                                        "Hello™ one last time, World"])
+          expect(streamed_lines).to eq(['Hello™, World',
+                                        'Hello™ again, World',
+                                        'Hello™ one last time, World'])
         end
       end
     end

@@ -47,7 +47,7 @@ module StreamLines
       end
 
       def split_lines(encoded_chunk)
-        lines = encoded_chunk.split($INPUT_RECORD_SEPARATOR, -1)
+        encoded_chunk.split($INPUT_RECORD_SEPARATOR, -1)
       rescue ArgumentError => e
         raise e unless /invalid byte sequence/.match?(e.message)
 
