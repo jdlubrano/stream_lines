@@ -82,6 +82,47 @@ RSpec.describe StreamLines::Reading::Stream do
       end
     end
 
+    context 'when the chunk splits a UTF-8 string such that an invalid byte sequence is created' do
+      context 'no newlines' do
+        before do
+          content = "Hello™ World"
+          bytes = content.bytes
+
+          allow(described_class)
+            .to receive(:get)
+            .and_yield(bytes[0..6].pack('c*'))
+            .and_yield(bytes[7..-1].pack('c*'))
+        end
+
+        it 'reassembles valid byte sequences' do
+          expect(streamed_lines).to eq(["Hello™ World"])
+        end
+      end
+
+      context 'with newlines' do
+        before do
+          content = <<~CONTENT
+            Hello™, World
+            Hello™ again, World
+            Hello™ one last time, World
+          CONTENT
+
+          bytes = content.bytes
+
+          allow(described_class)
+            .to receive(:get)
+            .and_yield(bytes[0..22].pack('c*'))
+            .and_yield(bytes[23..-1].pack('c*'))
+        end
+
+        it 'reassembles valid byte sequences' do
+          expect(streamed_lines).to eq(["Hello™, World",
+                                        "Hello™ again, World",
+                                        "Hello™ one last time, World"])
+        end
+      end
+    end
+
     context 'when the GET request fails' do
       let(:url) { 'https://test.stream_lines.com/fail' }
 

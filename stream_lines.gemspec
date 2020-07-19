@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler-audit'
   spec.add_development_dependency 'bundler-gem_version_tasks'
   spec.add_development_dependency 'byebug'
+  spec.add_development_dependency 'charlock_holmes'
   spec.add_development_dependency 'get_process_mem'
   spec.add_development_dependency 'memory_profiler'
   spec.add_development_dependency 'rake', '~> 13.0'

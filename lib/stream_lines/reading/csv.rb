@@ -23,7 +23,9 @@ module StreamLines
       def initialize(url, **csv_options)
         @url = url
         @csv_options = accepted_csv_options(csv_options)
-        @stream = Stream.new(url)
+
+        encoding = @csv_options[:encoding] || Encoding.default_external
+        @stream = Stream.new(url, encoding: encoding)
       end
 
       def each(&block)

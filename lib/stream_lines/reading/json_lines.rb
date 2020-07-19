@@ -8,10 +8,10 @@ module StreamLines
     class JSONLines
       include Enumerable
 
-      def initialize(url, **json_options)
+      def initialize(url, encoding: Encoding.default_external, **json_options)
         @url = url
         @json_options = json_options
-        @stream = Stream.new(url)
+        @stream = Stream.new(url, encoding: encoding)
       end
 
       def each(&block)
