@@ -12,7 +12,7 @@ module StreamLines
 
       raise_on 400..599
 
-      def initialize(url, encoding: 'UTF-8')
+      def initialize(url, encoding: Encoding.default_external)
         @url = url
         @encoding = encoding
         @buffer = String.new(encoding: @encoding)
