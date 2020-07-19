@@ -1,7 +1,9 @@
 # StreamLines
 
 [![Gem Version](https://badge.fury.io/rb/stream_lines.svg)](https://badge.fury.io/rb/stream_lines)
-![](https://github.com/jdlubrano/stream_lines/workflows/Tests/badge.svg)
+![Tests (Ruby 2.5)](https://github.com/jdlubrano/stream_lines/workflows/Tests%20(Ruby%202.5)/badge.svg)
+![Tests (Ruby 2.6)](https://github.com/jdlubrano/stream_lines/workflows/Tests%20(Ruby%202.6)/badge.svg)
+![Tests (Ruby 2.7)](https://github.com/jdlubrano/stream_lines/workflows/Tests%20(Ruby%202.7)/badge.svg)
 
 An API for streaming files from remote locations one line at a time.
 
