@@ -59,6 +59,8 @@ module StreamLines
         # to the buffer, prepended to the next chunk, and, hopefully, restores
         # a valid byte sequence.
         last_newline_index = encoded_chunk.rindex($INPUT_RECORD_SEPARATOR)
+        return [encoded_chunk] if last_newline_index.nil?
+
         valid_lines = encoded_chunk[0...last_newline_index].split($INPUT_RECORD_SEPARATOR, -1)
         valid_lines + [encoded_chunk[(last_newline_index + 1)..-1]].compact
       end
