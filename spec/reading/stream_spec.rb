@@ -154,7 +154,4 @@ RSpec.describe StreamLines::Reading::Stream do
       end
     end
   end
-
-  describe '#each_slice' do
-  end
 end
