@@ -42,5 +42,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov', '~> 0.17'
   spec.add_development_dependency 'sinatra', '~> 2.0'
   spec.add_development_dependency 'sinatra-contrib', '~> 2.0'
+  spec.add_development_dependency 'webrick', '~> 1.7'
   spec.add_development_dependency 'webmock', '~> 3.0'
 end

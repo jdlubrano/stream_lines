@@ -1,0 +1,32 @@
+name: Tests (Ruby)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby_version:
+          - 2.5
+          - 2.6
+          - 2.7
+          - 3.0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+      - name: Ruby version
+        run: ruby -v
+      - name: Install dependencies
+        run: bundle install
+      - name: Run tests
+        run: bundle exec rake
