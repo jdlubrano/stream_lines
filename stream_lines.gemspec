@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.executables   = []
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency 'httparty', '~> 0.14'
+  spec.add_runtime_dependency 'down', '~> 5.2.4'
 
   spec.add_development_dependency 'awesome_print', '~> 1.8'
   spec.add_development_dependency 'bundler', '~> 2.0'

@@ -1,27 +1,23 @@
 # frozen_string_literal: true
 
-require 'httparty'
-
+require 'down'
 require 'stream_lines/error'
 
 module StreamLines
   module Reading
     class Stream
       include Enumerable
-      include HTTParty
-
-      raise_on 400..599
-
+    
       def initialize(url, encoding: Encoding.default_external)
         @url = url
         @encoding = encoding
         @buffer = String.new(encoding: @encoding)
+        @from_offset = 0
+        @chunk_size = 1024 * 1000 * 10 # 10 Mb chunks 
       end
 
       def each(&block)
         stream_lines(&block)
-      rescue HTTParty::Error => e
-        raise Error, "Failed to download #{url} with code: #{e.response.code}"
       end
 
       private
@@ -29,12 +25,41 @@ module StreamLines
       attr_reader :url
 
       def stream_lines(&block)
-        self.class.get(url, stream_body: true) do |chunk|
-          lines = extract_lines(chunk)
-          lines.each { |line| block.call(line) }
-        end
+        retries = 0
+        max_retries = 8
 
-        block.call(@buffer) if @buffer.size.positive?
+        begin
+          remote_file = Down.open(url,  
+            read_timeout: 120, # should this be more ? 
+            rewindable: false,
+            headers: { "Range" => "bytes=#{@from_offset * @chunk_size}-" }
+          )
+
+          while !remote_file.eof? do
+            chunk = remote_file.read(@chunk_size)
+            lines = extract_lines(chunk)
+            lines.each { |line| block.call(line) }
+            @from_offset += 1
+          end
+          
+          remote_file.close 
+          block.call(@buffer) if @buffer.size.positive?
+
+        rescue  Down::ConnectionError,
+          Down::TimeoutError,
+          Down::ServerError,
+          Down::SSLError => e
+
+          if retries <= max_retries
+            sleep(2**retries)
+            retries += 1
+            retry
+          else
+            raise Exception.new "Giving up after #{retries} retries: #{e}"
+          end
+        rescue Exception => e
+          raise Exception.new "Something else happened #{e}"
+        end        
       end
 
       def extract_lines(chunk)
@@ -42,7 +67,6 @@ module StreamLines
         lines = split_lines(encoded_chunk)
         @buffer = String.new(encoding: @encoding)
         @buffer << lines.pop.to_s
-
         lines
       end
 
