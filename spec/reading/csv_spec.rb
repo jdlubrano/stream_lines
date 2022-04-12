@@ -62,6 +62,17 @@ RSpec.describe StreamLines::Reading::CSV do
           expect(streamed_rows.map(&:to_h)).to eq([{ 'foo' => '1', 'bar' => '2' },
                                                    { 'foo' => '3', 'bar' => '4' }])
         end
+
+        it 'correctly yields all of the data' do
+          stream = described_class.new(url, headers: true)
+
+          cloud = []
+          cloud << stream.first.headers.to_csv
+          stream.each do |row|
+            cloud << row.fields.to_csv
+          end
+          expect(cloud).to eq ["foo,bar\n", "1,2\n", "3,4\n"]
+        end
       end
 
       context 'when the headers are provided as an array' do
