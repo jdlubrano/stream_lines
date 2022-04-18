@@ -23,6 +23,7 @@ module StreamLines
       def initialize(url, **csv_options)
         @url = url
         @csv_options = accepted_csv_options(csv_options)
+        @first_row_headers = @csv_options[:headers] == true
 
         encoding = @csv_options[:encoding] || Encoding.default_external
         @stream = Stream.new(url, encoding: encoding)
@@ -41,7 +42,7 @@ module StreamLines
       attr_reader :url
 
       def first_row_headers?
-        @csv_options[:headers] == true
+        @first_row_headers
       end
 
       def assign_first_row_headers(first_line)
