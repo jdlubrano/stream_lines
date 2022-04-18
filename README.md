@@ -55,6 +55,37 @@ stream.each_slice(100) do |lines|
 end
 ```
 
+##### Caveats
+
+This library strives to provide streamed data via an `Enumerable` interface.
+In order to be memory-efficient, however, each time the stream is iterated over,
+a new GET request is made to fetch the data from its remote URL.  For example,
+
+```ruby
+url = 'https://my.remote.file/file.txt'
+stream = StreamLines::Reading::Stream.new(url)
+do_something_with_first_row(stream.first) # GET request made
+
+stream.each do |line| # same GET request made
+  # Do something with the line of data (the line will be a String)
+end
+```
+
+makes two GET requests.  The call to `first` makes a GET request to fetch
+the first row of data.  The subsequent call to `each` makes the same GET
+request.  To avoid unnecessary requests, I recommend a slightly different
+approach, which may not be intuitive but does make only one network request:
+
+```
+url = 'https://my.remote.file/file.txt'
+stream = StreamLines::Reading::Stream.new(url)
+
+stream.each_with_index do |line, i|
+  do_something_with_first_row(line) if i.zero?
+  # Do something with the line of data (the line will be a String)
+end
+```
+
 ##### CSVs
 
 This gem provides first-class support for streaming CSVs from a remote URL.
