@@ -76,7 +76,7 @@ the first row of data.  The subsequent call to `each` makes the same GET
 request.  To avoid unnecessary requests, I recommend a slightly different
 approach, which may not be intuitive but does make only one network request:
 
-```
+```ruby
 url = 'https://my.remote.file/file.txt'
 stream = StreamLines::Reading::Stream.new(url)
 
