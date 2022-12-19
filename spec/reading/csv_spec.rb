@@ -51,7 +51,7 @@ RSpec.describe StreamLines::Reading::CSV do
         let(:csv) { described_class.new(url, headers: true) }
 
         it 'yields CSV::Rows' do
-          expect(streamed_rows).to all be_a(::CSV::Row)
+          expect(streamed_rows).to all be_a(CSV::Row)
         end
 
         it 'uses the first row as the headers' do
@@ -80,7 +80,7 @@ RSpec.describe StreamLines::Reading::CSV do
         let(:headers) { %w[column_1 column_2] }
 
         it 'yields CSV::Rows' do
-          expect(streamed_rows).to all be_a(::CSV::Row)
+          expect(streamed_rows).to all be_a(CSV::Row)
         end
 
         it 'yields the first row with the given headers' do
