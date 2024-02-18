@@ -20,7 +20,7 @@ module StreamingApi
         Port: '4567'
       }
 
-      Rack::Handler::WEBrick.run(StreamingApi::App, **options) do |server|
+      Rackup::Handler::WEBrick.run(StreamingApi::App, **options) do |server|
         %i[INT TERM].each { |sig| trap(sig) { server.stop } }
       end
     end

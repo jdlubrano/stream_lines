@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'charlock_holmes'
   spec.add_development_dependency 'get_process_mem'
   spec.add_development_dependency 'memory_profiler'
+  spec.add_development_dependency 'rackup'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 1.60.0'

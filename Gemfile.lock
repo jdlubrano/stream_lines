@@ -51,6 +51,9 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rainbow (3.1.1)
     rake (13.1.0)
     regexp_parser (2.9.0)
@@ -122,6 +125,7 @@ DEPENDENCIES
   charlock_holmes
   get_process_mem
   memory_profiler
+  rackup
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.60.0)
