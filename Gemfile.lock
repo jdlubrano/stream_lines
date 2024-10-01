@@ -36,7 +36,7 @@ GEM
       multi_xml (>= 0.5.2)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
-    memory_profiler (1.0.2)
+    memory_profiler (1.1.0)
     mini_mime (1.1.5)
     multi_json (1.15.0)
     multi_xml (0.7.1)
