@@ -1,5 +1,6 @@
 AllCops:
   NewCops: 'enable'
+  SuggestExtensions: false
   TargetRubyVersion: 2.5
   Exclude:
     - '*.gemspec'
@@ -14,3 +15,7 @@ Layout/LineLength:
 
 Style/Documentation:
   Enabled: false
+
+Style/MapIntoArray:
+  Exclude:
+    - 'spec/reading/**/*.rb' # most specs call each intentionally since a Stream is an Enumerable
