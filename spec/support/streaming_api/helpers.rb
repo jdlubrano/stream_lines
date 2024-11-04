@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rackup/handler/webrick'
+
 module StreamingApi
   module Helpers
     def run_streaming_api
