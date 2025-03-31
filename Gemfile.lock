@@ -22,7 +22,7 @@ GEM
     crack (1.0.0)
       bigdecimal
       rexml
-    csv (3.3.0)
+    csv (3.3.3)
     diff-lcs (1.5.1)
     docile (1.4.0)
     ffi (1.17.0)
@@ -30,7 +30,7 @@ GEM
       bigdecimal (>= 2.0)
       ffi (~> 1.0)
     hashdiff (1.1.2)
-    httparty (0.22.0)
+    httparty (0.23.1)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
