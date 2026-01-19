@@ -30,7 +30,7 @@ GEM
       bigdecimal (>= 2.0)
       ffi (~> 1.0)
     hashdiff (1.2.1)
-    httparty (0.24.0)
+    httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -41,7 +41,7 @@ GEM
     memory_profiler (1.1.0)
     mini_mime (1.1.5)
     multi_json (1.17.0)
-    multi_xml (0.8.0)
+    multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
