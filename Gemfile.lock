@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     stream_lines (0.4.1)
-      httparty (~> 0.14)
+      httparty (~> 0.24)
 
 GEM
   remote: https://rubygems.org/
