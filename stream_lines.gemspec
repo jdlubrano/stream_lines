@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'httparty', '~> 0.14'
 
   spec.add_development_dependency 'awesome_print', '~> 1.8'
-  spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'bundler', '~> 4.0'
   spec.add_development_dependency 'bundler-audit'
   spec.add_development_dependency 'bundler-gem_version_tasks'
   spec.add_development_dependency 'byebug'

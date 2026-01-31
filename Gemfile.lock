@@ -134,7 +134,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print (~> 1.8)
-  bundler (~> 2.0)
+  bundler (~> 4.0)
   bundler-audit
   bundler-gem_version_tasks
   byebug
@@ -153,4 +153,4 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.7.2
+  4.0.5
